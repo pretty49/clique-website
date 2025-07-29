@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Clique | Creative Digital Agency</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <style>
+        /* --- 1. General & Reset Styles (Unchanged) --- */
+        :root {
+            --primary-color: #E67E22;
+            --secondary-color: #222831;
+            --light-text-color: #FFFFFF;
+            --bg-light: #FFFFFF;
+            --border-color: #EAEAEA;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.8; color: var(--secondary-color); background-color: var(--secondary-color); -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.3; margin-bottom: 20px; color: var(--secondary-color); }
+        h1 { font-size: 4.5rem; font-weight: 800; }
+        h2 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .container { max-width: 1200px; margin: auto; padding: 0 25px; }
+        section { padding: 120px 0; overflow: hidden; position: relative; }
+        .btn { display: inline-block; padding: 15px 35px; background-color: var(--primary-color); color: #fff; font-weight: 600; text-decoration: none; border-radius: 50px; transition: all 0.3s ease; border: 2px solid var(--primary-color); }
+        .btn:hover { background-color: transparent; color: var(--primary-color); border-color: var(--primary-color); }
+
+        /* --- 2. Header & Navigation (Unchanged) --- */
+        .header { background: transparent; padding: 20px 0; position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease; }
+        .header.scrolled { background: rgba(34, 40, 49, 0.85); padding: 15px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { max-height: 40px; transition: filter 0.3s ease; }
+        .header:not(.scrolled) .logo img { filter: brightness(0) invert(1); }
+        .header.scrolled .logo img { filter: none; }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 35px; }
+        .nav-links a { color: var(--light-text-color); text-decoration: none; font-weight: 600; font-size: 0.9rem; position: relative; padding-bottom: 5px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--primary-color); }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; }
+        .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--light-text-color); transition: all 0.3s ease-in-out; }
+
+        /* --- 3. Hero Video Slider (Unchanged) --- */
+        #agency { height: 100vh; padding: 0; color: var(--light-text-color); }
+        .hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; overflow: hidden; }
+        .hero-slide.active { opacity: 1; }
+        .hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 1; }
+        .hero-slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3)); z-index: 2; }
+        .hero-content-container { position: relative; z-index: 3; height: 100%; display: flex; justify-content: center; align-items: center; text-align: center; padding: 0 25px; }
+        .hero-content { max-width: 800px; }
+        .hero-content h1 { color: var(--light-text-color); text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 20px; }
+        .hero-content p { color: var(--light-text-color); font-size: 1.3rem; font-weight: 300; margin-bottom: 40px; }
+        
+        /* --- 4. Backgrounds & Overlays for Sections (Unchanged) --- */
+        
+        #who-we-are, #what-drives-us, #capabilities, #portfolio, #service-plus, #contact-us { background-size: cover; background-position: center; background-attachment: fixed; }
+        #who-we-are { background-image: url('logo.png'); }
+        #what-drives-us { background-image: url('rustam-gadirli-X1l3WrAHq5E-unsplash.jpg'); }
+        #capabilities { background-image: url('images4.png'); }
+        #portfolio { background-image: url('images2.png'); }
+        #service-plus { background: var(--primary-color); background-attachment: scroll; }
+        #contact-us { background-image: url('image.png'); background-attachment: scroll; }
+        #who-we-are::before, #what-drives-us::before, #capabilities::before, #portfolio::before, #contact-us::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(34, 40, 49, 0.92); z-index: 1; }
+        #who-we-are .container, #what-drives-us .container, #capabilities .container, #portfolio .container, #contact-us .container { position: relative; z-index: 2; }
+        #who-we-are h2, #who-we-are h3, #who-we-are h4, #who-we-are p, #what-drives-us h2, #what-drives-us h3, #what-drives-us h4, #what-drives-us p, #capabilities h2, #capabilities p, #portfolio h2, #portfolio p, #contact-us h2, #contact-us h3, #contact-us p { color: var(--light-text-color); }
+        .section-with-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .video-sidebar video { width: 100%; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: block; }
+        .section-title { text-align: center; margin-bottom: 80px; }
+
+        /* ======================================================= */
+        /* === 5. MODIFIED PORTFOLIO TESTIMONIAL SLIDER STYLES === */
+        /* ======================================================= */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 10)); } /* (slide width) * (number of slides) */
+        }
+        .testimonial-slider-container { height: 150px; margin: auto; overflow: hidden; position: relative; width: 100%; }
+        .testimonial-slider-container::before, .testimonial-slider-container::after { background: linear-gradient(to right, rgba(34, 40, 49, 1) 0%, rgba(34, 40, 49, 0) 100%); content: ""; height: 100%; position: absolute; width: 15%; z-index: 2; }
+        .testimonial-slider-container::before { left: 0; top: 0; }
+        .testimonial-slider-container::after { right: 0; top: 0; transform: rotateZ(180deg); }
+        .testimonial-slider { animation: scroll 60s linear infinite; display: flex; width: calc(250px * 20); /* (slide width) * (number of slides * 2 for loop) */ }
+        .testimonial-slide { height: 120px; width: 250px; padding: 10px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .testimonial-slide .client-logo { height: 60px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
+        .testimonial-slide .client-logo img {
+            max-height: 100%;
+            width: auto;
+            /* REMOVED faulty filter. The new images are already white. */
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .testimonial-slide:hover .client-logo img { opacity: 1; transform: scale(1.1); }
+        .testimonial-slide .client-comment { font-style: italic; font-size: 0.9rem; color: black; }
+
+        /* --- 6. Other Section Styles (Unchanged) --- */
+        .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
+        .capability-card { background: rgba(255,255,255, 0.05); padding: 40px; border-radius: 10px; transition: background 0.3s ease, transform 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
+        .capability-card:hover { background: rgba(255,255,255, 0.1); transform: translateY(-8px); }
+        .capability-card h3, .capability-card p { color: var(--light-text-color); }
+        #service-plus h2, #service-plus p { color: #fff; }
+        #service-plus .section-title h2::after { background-color: #fff; }
+        
+         /* ============================================== */
+        /* === 7. NEW: ADJUSTED FOOTER STYLES === */
+        /* ============================================== */
+        .footer {
+            background-color: var(--secondary-color);
+            padding: 80px 0 40px 0;
+            color: rgba(255,255,255,0.7);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-column h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer-column p, .footer-column address {
+            font-style: normal;
+            margin-bottom: 20px;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        .footer-column a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-column a:hover {
+            color: var(--primary-color);
+            filter: none;
+        }
+        .footer-map iframe {
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 0;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 40px;
+        }
+        .social-media-links {
+            margin-bottom: 20px;
+        }
+        .social-media-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-media-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            filter: none;
+       } 
+        @media(max-width: 992px) {
+            .section-with-sidebar { grid-template-columns: 1fr; }
+            .video-sidebar { margin-top: 40px; }
+        }
+        @media(max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .header { background: #fff; padding: 15px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+            .header.scrolled { background: #fff; }
+            .header .logo img { filter: none !important; }
+            .header .nav-links a, .header.scrolled .nav-links a { color: var(--secondary-color); }
+            .hamburger { display: block; }
+            .hamburger .bar, .header.scrolled .hamburger .bar { background-color: var(--secondary-color); }
+            .nav-links { position: fixed; left: -100%; top: 73px; background: #fff; flex-direction: column; width: 100%; height: calc(100vh - 73px); text-align: center; transition: left 0.3s ease-in-out; padding-top: 40px; }
+            .nav-links.active { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header"> <!-- Header content is unchanged -->
+         <div class="container">
+            <div class="logo"><a href="#agency"><img src=" logo.png" alt="The Clique Logo"></a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#who-we-are">Who We Are</a></li>
+                    <li><a href="#what-drives-us">Our Drive</a></li>
+                    <li><a href="#capabilities">Capabilities</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#service-plus">Service+</a></li>
+                    <li><a href="#contact-us">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION (UNCHANGED) -->
+        <section id="agency">
+            <div class="hero-slide active">
+                <video class="hero-video" autoplay muted loop playsinline><source src=" 240_F_1452882193_s4IAxpUlwu8sRGYDn2qlgIEwQdnOfQyO_ST.mp4 " type="video/mp4"></video>
+                <div class="hero-content-container"><div class="hero-content"><h1>Experience the Brand. <br> Command the Market.</h1><p>We are The Clique. A digital agency crafting unique experiences that connect and convert.</p><a href="#who-we-are" class="btn">Discover More</a></div></div>
+            </div>
+            <div class="hero-slide">
+                <video class="hero-video" autoplay muted loop playsinline><source src="240_F_1036317819_P3vrzcskmamO6Koj1t0MXLvCN9Ezy9DN_ST.mp4 " type="video/mp4"></video>
+                <div class="hero-content-container"><div class="hero-content"><h1>Where Vision <br>Becomes Victory.</h1><p>An idea is only as powerful as its execution. We are architects of both. We design brilliant, data-driven strategies and then bring them to life with relentless precision </p><a href="#capabilities" class="btn">See Our Skills</a></div></div>
+            </div>
+            <div class="hero-slide">
+                <video class="hero-video" autoplay muted loop playsinline><source src=" 700_F_996899809_rIpag34oPX1eo69jc6X65fpVbCfEinlV_ST.mp4" type="video/mp4"></video>
+                <div class="hero-content-container"><div class="hero-content"><h1> Your Ambition, <br>Our Mission. </h1><p> Let's forge the strategy that seizes your market. Your journey to industry leadership starts now.</p><a href="#contact-us" class="btn">Start a Project</a></div></div>
+            </div>
+        </section>
+        
+        <!-- WHO WE ARE SECTION (UNCHANGED) -->
+        <section id="who-we-are">
+            <div class="container">
+                <div class="section-with-sidebar">
+                    <div class="main-content">
+                        <h2>OUR LEGACY</h2>
+                        <div class="video-sidebar">
+                        <video autoplay loop muted playsinline><source src="clique intro vide.mp4 " type="video/mp4"></video>
+                    </div>
+
+                        <p>At <strong>CLIQUE.NIGERIA,</strong> we combine high-spirited creativity with a serious, disciplined approach to deliver remarkable results with speed.</p>
+                        <div class="legacy-advantages" style="margin-top: 40px;">
+                            <div class="advantage-item" style="margin-bottom: 20px;"><h4 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px;">Data-Driven Partnership</h4><p style="margin-bottom: 0;">Your goals are our metrics. We operate with full transparency, treating your business as our own and focusing relentlessly on measurable ROI.</p></div>
+                            <div class="advantage-item"><h4 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px;">Collaborative Excellence</h4><p style="margin-bottom: 0;">Joining us means joining a clique of winners. We work as a seamless extension of your team, dedicated to building your success story.</p></div>
+                        </div>
+                    </div>
+                   
+                       
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT DRIVES US SECTION (UNCHANGED) -->
+        <section id="what-drives-us">
+            <div class="container">
+                <div class="section-with-sidebar">
+                    <div class="main-content">
+                        <h2>wHAT DRIVES US</h2>
+                        <div class="video-sidebar">
+                            <video autoplay loop muted playsinline><source src="  about-us.mp4 " type="video/mp4"></video>
+                        </div>
+                        <div class="legacy-advantages" style="margin-top: 40px;">
+                            <div class="advantage-item" style="margin-bottom: 20px;"><h4 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px;">DRIVEN BY THE LEGACY WE CREATE </h4><p style="margin-bottom: 0;">For us, marketing is more than a service; it's the art of building a legacy. We are not driven by the temporary thrill of a campaign, but by the enduring impact we create for our partners. Our motivation comes from watching a brand we've nurtured become a market leader, a household name, and a permanent fixture in the Nigerian economy.</p></div>
+                            <div class="advantage-item" style="margin-bottom: 20px;"><h4 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px;"> DRIVEN BY THE COMPLEXITY OF THE CHALLENGE</h4><p style="margin-bottom: 0;">Nigeria's digital landscape is not for the timid. It is a dynamic, complex, and immensely rewarding arena that demands more than just standard solutions. What drives us is the intellectual challenge of mastering this very landscape. We are fueled by the pursuit of the perfect strategy—the one that unlocks unprecedented growth where others see only obstacles.</p></div>
+                            <div class="advantage-item"><h4 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px;">Our vission,Mission and values</h4><p style="margin-bottom: 0;">This long-term vision is what fuels our discipline. Every strategy we deploy is a calculated step towards a larger goal: to ensure that your brand doesn't just participate in the market, but defines it for years to come. Your success story is the ultimate measure of our own legacy. </p></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPABILITIES SECTION (UNCHANGED) -->
+        <section id="capabilities">
+            <div class="container">
+                 <div class="section-title" style="text-align: center;">
+                    <h2 style="color: var(--light-text-color);">Our Capabilities</h2>
+                    <p style="max-width: 800px; margin-left: auto; margin-right: auto; color: var(--light-text-color);">The greatest marketing strategies fail at the point of execution. As a true full-service agency, we eliminate this risk entirely. We are the architects of your success, managing every phase from the initial brand vision to the final, measurable outcome.</p>
+                </div>
+                <div class="capabilities-grid">
+                    <div class="capability-card"><h3>Brand Strategy</h3><p>Defining your voice and positioning in a crowded market.</p></div>
+                    <div class="capability-card"><h3>UI/UX Design</h3><p>Crafting intuitive and beautiful user-first digital interfaces.</p></div>
+                    <div class="capability-card"><h3>Web Development</h3><p>Building fast, secure, and scalable websites and applications.</p></div>
+                    <div class="capability-card"><h3>Content Creation</h3><p>Telling your story through compelling visuals and copy.</p></div>
+                    <div class="capability-card"><h3>Digital Marketing</h3><p>Data-driven campaigns that convert and grow your audience.</p></div>
+                    <div class="capability-card"><h3>E-commerce</h3><p>Creating seamless online stores that drive revenue.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ============================================== -->
+        <!--        MODIFIED PORTFOLIO SECTION START        -->
+        <!-- ============================================== -->
+        <section id="portfolio">
+            <div class="container">
+                <div class="section-title" style="text-align: center; margin-bottom: 60px;">
+                    <h2>Trusted By The Best</h2>
+                    <p style="max-width: 800px; margin-left: auto; margin-right: auto;">Our work speaks for itself, but the results we achieve speak louder. We are proud to be the strategic partner for these industry leaders.</p>
+                </div>
+
+                <!-- NEW: AUTOMATIC TESTIMONIAL SLIDER WITH YOUR CLIENTS -->
+                <div class="testimonial-slider-container">
+                    <div class="testimonial-slider">
+                        <!-- Your 10 Clients -->
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" hotel.png " alt="Hotel Seventeen Logo"></div><div class="client-comment">"A true partner in growth."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="famask.png " alt="Famask Logo"></div><div class="client-comment">"Exceeded all expectations."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" tetfund.png" alt="Tetfund Logo"></div><div class="client-comment">"Professional and effective."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" liberty.png" alt="Liberty TV/Radio Logo"></div><div class="client-comment">"Transformed our presence."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="euro.png " alt="Eurofoam Logo"></div><div class="client-comment">"Unparalleled strategic insight."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" 22.png " alt="INEC Logo"></div><div class="client-comment">"The best team we've worked with."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" KIDS.png " alt="Farm Pride Logo"></div><div class="client-comment">"Our results have never been better."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" 24.png " alt="British American Tobacco Foundation Logo"></div><div class="client-comment">"Deep market understanding."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" ggl.png " alt="Indorama Logo"></div><div class="client-comment">"A seamless, integrated approach."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" jonson.png" alt="SC Johnson Logo"></div><div class="client-comment">"Creative and results-driven."</div></div>
+                        
+                        <!-- Duplicated for seamless loop effect -->
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" hotel.png" alt="Hotel Seventeen Logo"></div><div class="client-comment">"A true partner in growth."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" famask.png" alt="Famask Logo"></div><div class="client-comment">"Exceeded all expectations."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" tetfund.png" alt="Tetfund Logo"></div><div class="client-comment">"Professional and effective."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" liberty.png" alt="Liberty TV/Radio Logo"></div><div class="client-comment">"Transformed our presence."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" euro.png" alt="Eurofoam Logo"></div><div class="client-comment">"Unparalleled strategic insight."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" INEC.png" alt="INEC Logo"></div><div class="client-comment">"The best team we've worked with."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="farm.png " alt="Farm Pride Logo"></div><div class="client-comment">"Our results have never been better."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="  britis.png" alt="British American Tobacco Foundation Logo"></div><div class="client-comment">"Deep market understanding."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src=" indoram.png" alt="Indorama Logo"></div><div class="client-comment">"A seamless, integrated approach."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="jonson.png " alt="SC Johnson Logo"></div><div class="client-comment">"Creative and results-driven."</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================== -->
+        <!--         MODIFIED PORTFOLIO SECTION END         -->
+        <!-- ============================================== -->
+        
+        <section id="service-plus">
+            <div class="container">
+                <div class="section-title" style="text-align: center;">
+                    <h2 style="color: var(--light-text-color);">Let's Build Something Extraordinary</h2>
+                </div>
+                <p style="max-width: 800px; margin-left: auto; margin-right: auto;">We go beyond the brief. Service Plus is our commitment to providing ongoing support and optimization to ensure your long-term success. We're not just a vendor; we're your dedicated partner in growth.</p>
+                <a href="#contact-us" class="btn" style="display: block; width: fit-content; margin: 40px auto 0;">Start a Project</a>
+            </div>
+        </section>
+
+        <section id="contact-us">
+            <div class="container">
+                <div class="section-with-sidebar">
+                    <div class="main-content">
+                        <div class="section-title" style="text-align: left;">
+                            <h2 style="color: var(--light-text-color);">Contact Us</h2>
+                        </div>
+                        <h3>Get In Touch</h3>
+                        <p>Have a project in mind or just want to say hello? We'd love to hear from you. Drop us a line, and we'll get back to you as soon as possible.</p>
+                        <form class="contact-form" style="margin-top: 30px;">
+                            <div style="margin-bottom: 20px;"><input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 15px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff;"></div>
+                            <div style="margin-bottom: 20px;"><input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 15px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff;"></div>
+                            <div style="margin-bottom: 20px;"><textarea name="message" rows="5" placeholder="Your Message" required style="width: 100%; padding: 15px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff;"></textarea></div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                      
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-columns">
+                <!-- Column 1: About -->
+                <div class="footer-column">
+                    <h4>About The Clique</h4>
+                    <p>We are architects of digital legacy, delivering inspired marketing communication solutions with a disciplined, serious approach to help our partners build brands that win.</p>
+                </div>
+                <!-- Column 2: Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#who-we-are">Who We Are</a></li>
+                        <li><a href="#what-drives-us">Our Drive</a></li>
+                        <li><a href="#capabilities">Capabilities</a></li>
+                        <li><a href="#portfolio">Our Work</a></li>
+                        <li><a href="#contact-us">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Contact Info -->
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <address>
+                        <p>8 Kabir Road, Ungwan Rimi, Kaduna</p>
+                        <p><a href="mailto:info@cliquenig.com">info@cliquenig.com</a></p>
+                        <p><a href="tel:+2348023009657">+234 802 300 9657</a></p>
+                    </address>
+                    <div class="footer-map">
+                        <iframe src=" https://www.researchgate.net/publication/372237703/figure/fig1/AS:11431281173621880@1688990849571/Map-of-Kaduna-North-LGA-showing-study-sites-Mando-and-NDA-Source-KASU-GIS-2023.png " width="100%" height="150" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-media-links">
+                    <a href="#" aria-label="Facebook">Facebook</a>
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                </div>
+                <p>© 2024 The Clique. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>  
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Header & Nav (Unchanged) ---
+            const hamburger = document.querySelector('.hamburger');
+            if (hamburger) {
+                const navLinks = document.querySelector('.nav-links');
+                const header = document.querySelector('.header');
+                
+                const checkHeader = () => {
+                    if (window.scrollY > 50 || (navLinks && navLinks.classList.contains('active'))) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                };
+
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    if (navLinks) navLinks.classList.toggle('active');
+                });
+                
+                if (navLinks) {
+                    document.querySelectorAll('.nav-links li a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            hamburger.classList.remove('active');
+                            navLinks.classList.remove('active');
+                        });
+                    });
+                }
+
+                window.addEventListener('scroll', checkHeader);
+                checkHeader();
+            }
+
+            // --- Hero Video Slider (Unchanged) ---
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            if(heroSlides.length > 1) {
+                let currentHeroSlide = 0;
+                setInterval(() => {
+                    heroSlides[currentHeroSlide].classList.remove('active');
+                    currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+                    heroSlides[currentHeroSlide].classList.add('active');
+                }, 7000);
+            }
+        });
+    </script>
+</body>
+</html>
