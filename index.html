@@ -1,9 +1,9 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Clique Homepage</title>
+    <title>The Clique | Creative Digital Agency</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,12 +58,12 @@
         /* --- 4. Backgrounds & Overlays for Sections --- */
         #who-we-are, #what-drives-us, #capabilities, #portfolio, #service-plus, #contact-us { background-size: cover; background-position: center; background-attachment: fixed; }
         /* CORRECTED PATHS */
-        #who-we-are { background-image: url('images/png/logo.png'); }
-        #what-drives-us { background-image: url('images/png/rustam-gadirli-X1l3WrAHq5E-unsplash.jpg'); }
-        #capabilities { background-image: url('images/png/images4.png'); }
-        #portfolio { background-image: url('images/png/images2.png'); }
+        #who-we-are { background-image: url('images/logo.png'); }
+        #what-drives-us { background-image: url('images/rustam-gadirli-X1l3WrAHq5E-unsplash.jpg'); }
+        #capabilities { background-image: url('images/images4.png'); }
+        #portfolio { background-image: url('images/images2.png'); }
         #service-plus { background: var(--primary-color); background-attachment: scroll; }
-        #contact-us { background-image: url('images/png/image.png'); background-attachment: scroll; }
+        #contact-us { background-image: url('images/image.png'); background-attachment: scroll; }
         #who-we-are::before, #what-drives-us::before, #capabilities::before, #portfolio::before, #contact-us::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(34, 40, 49, 0.92); z-index: 1; }
         #who-we-are .container, #what-drives-us .container, #capabilities .container, #portfolio .container, #contact-us .container { position: relative; z-index: 2; }
         #who-we-are h2, #who-we-are h3, #who-we-are h4, #who-we-are p, #what-drives-us h2, #what-drives-us h3, #what-drives-us h4, #what-drives-us p, #capabilities h2, #capabilities p, #portfolio h2, #portfolio p, #contact-us h2, #contact-us h3, #contact-us p { color: var(--light-text-color); }
@@ -74,7 +74,7 @@
         /* --- 5. Portfolio Testimonial Slider Styles --- */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 10)); } }
         .testimonial-slider-container { height: 150px; margin: auto; overflow: hidden; position: relative; width: 100%; }
-        .testimonial-slider-container::before, .testimonial-slider-container::after { background: linear-gradient(to right, rgba(34, 40, 49, 1) 0%, rgba(34, 40, 49, 0) 100%); content: ""; height: 100%; position: absolute; width: 15%; z-index: 2; }
+        .testimonial-slider-container::before, .testimonial-slider-container::after { background: linear-gradient(to right, rgba(34, 40, 49, 1) 0%, rgba(34, 40, 49, 0) 100%); content: ""; height: 100%; position: absolute; width: 15%; z-index: 2; pointer-events: none; }
         .testimonial-slider-container::before { left: 0; top: 0; }
         .testimonial-slider-container::after { right: 0; top: 0; transform: rotateZ(180deg); }
         .testimonial-slider { animation: scroll 60s linear infinite; display: flex; width: calc(250px * 20); }
@@ -82,7 +82,7 @@
         .testimonial-slide .client-logo { height: 60px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
         .testimonial-slide .client-logo img { max-height: 100%; width: auto; opacity: 0.7; transition: all 0.3s ease; }
         .testimonial-slide:hover .client-logo img { opacity: 1; transform: scale(1.1); }
-        .testimonial-slide .client-comment { font-style: italic; font-size: 0.9rem; color: var(--text-secondary); /* Corrected from black */ }
+        .testimonial-slide .client-comment { font-style: italic; font-size: 0.9rem; color: var(--text-secondary); }
 
         /* --- 6. Other Section Styles (Unchanged) --- */
         .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
@@ -130,7 +130,7 @@
     <header class="header">
          <div class="container">
             <!-- CORRECTED PATH -->
-            <div class="logo"><a href="#agency"><img src="images/png/logo.png" alt="The Clique Logo"></a></div>
+            <div class="logo"><a href="#agency"><img src="images/logo.png" alt="The Clique Logo"></a></div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#who-we-are">Who We Are</a></li>
@@ -149,17 +149,17 @@
         <section id="agency">
             <div class="hero-slide active">
                 <!-- CORRECTED PATH -->
-                <video class="hero-video" autoplay muted loop playsinline><source src="videos/mp4/240_F_1452882193_s4IAxpUlwu8sRGYDn2qlgIEwQdnOfQyO_ST.mp4" type="video/mp4"></video>
+                <video class="hero-video" autoplay muted loop playsinline><source src="videos/240_F_1452882193_s4IAxpUlwu8sRGYDn2qlgIEwQdnOfQyO_ST.mp4" type="video/mp4"></video>
                 <div class="hero-content-container"><div class="hero-content"><h1>Experience the Brand. <br> Command the Market.</h1><p>We are The Clique. A digital agency crafting unique experiences that connect and convert.</p><a href="#who-we-are" class="btn">Discover More</a></div></div>
             </div>
             <div class="hero-slide">
                 <!-- CORRECTED PATH -->
-                <video class="hero-video" autoplay muted loop playsinline><source src="videos/mp4/240_F_1036317819_P3vrzcskmamO6Koj1t0MXLvCN9Ezy9DN_ST.mp4" type="video/mp4"></video>
+                <video class="hero-video" autoplay muted loop playsinline><source src="videos/240_F_1036317819_P3vrzcskmamO6Koj1t0MXLvCN9Ezy9DN_ST.mp4" type="video/mp4"></video>
                 <div class="hero-content-container"><div class="hero-content"><h1>Where Vision <br>Becomes Victory.</h1><p>An idea is only as powerful as its execution. We are architects of both. We design brilliant, data-driven strategies and then bring them to life with relentless precision </p><a href="#capabilities" class="btn">See Our Skills</a></div></div>
             </div>
             <div class="hero-slide">
                 <!-- CORRECTED PATH -->
-                <video class="hero-video" autoplay muted loop playsinline><source src="videos/mp4/700_F_996899809_rIpag34oPX1eo69jc6X65fpVbCfEinlV_ST.mp4" type="video/mp4"></video>
+                <video class="hero-video" autoplay muted loop playsinline><source src="videos/700_F_996899809_rIpag34oPX1eo69jc6X65fpVbCfEinlV_ST.mp4" type="video/mp4"></video>
                 <div class="hero-content-container"><div class="hero-content"><h1> Your Ambition, <br>Our Mission. </h1><p> Let's forge the strategy that seizes your market. Your journey to industry leadership starts now.</p><a href="#contact-us" class="btn">Start a Project</a></div></div>
             </div>
         </section>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="video-sidebar">
                         <!-- CORRECTED PATH -->
-                        <video autoplay loop muted playsinline><source src="videos/mp4/clique intro vide.mp4" type="video/mp4"></video>
+                        <video autoplay loop muted playsinline><source src="videos/clique intro vide.mp4" type="video/mp4"></video>
                     </div>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                     </div>
                     <div class="video-sidebar">
                         <!-- CORRECTED PATH -->
-                        <video autoplay loop muted playsinline><source src="videos/mp4/about-us.mp4" type="video/mp4"></video>
+                        <video autoplay loop muted playsinline><source src="videos/about-us.mp4" type="video/mp4"></video>
                     </div>
                 </div>
             </div>
@@ -228,28 +228,28 @@
                 <div class="testimonial-slider-container">
                     <div class="testimonial-slider">
                         <!-- CORRECTED PATHS FOR ALL CLIENT LOGOS -->
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/hotel.png" alt="Hotel Seventeen Logo"></div><div class="client-comment">"A true partner in growth."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/famask.png" alt="Famask Logo"></div><div class="client-comment">"Exceeded all expectations."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/tetfund.png" alt="Tetfund Logo"></div><div class="client-comment">"Professional and effective."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/liberty.png" alt="Liberty TV/Radio Logo"></div><div class="client-comment">"Transformed our presence."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/euro.png" alt="Eurofoam Logo"></div><div class="client-comment">"Unparalleled strategic insight."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/22.png" alt="INEC Logo"></div><div class="client-comment">"The best team we've worked with."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/KIDS.png" alt="Farm Pride Logo"></div><div class="client-comment">"Our results have never been better."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/24.png" alt="British American Tobacco Foundation Logo"></div><div class="client-comment">"Deep market understanding."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/ggl.png" alt="Indorama Logo"></div><div class="client-comment">"A seamless, integrated approach."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/jonson.png" alt="SC Johnson Logo"></div><div class="client-comment">"Creative and results-driven."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/hotel.png" alt="Hotel Seventeen Logo"></div><div class="client-comment">"A true partner in growth."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/famask.png" alt="Famask Logo"></div><div class="client-comment">"Exceeded all expectations."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/tetfund.png" alt="Tetfund Logo"></div><div class="client-comment">"Professional and effective."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/liberty.png" alt="Liberty TV/Radio Logo"></div><div class="client-comment">"Transformed our presence."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/euro.png" alt="Eurofoam Logo"></div><div class="client-comment">"Unparalleled strategic insight."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/22.png" alt="INEC Logo"></div><div class="client-comment">"The best team we've worked with."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/KIDS.png" alt="Farm Pride Logo"></div><div class="client-comment">"Our results have never been better."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/24.png" alt="British American Tobacco Foundation Logo"></div><div class="client-comment">"Deep market understanding."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/ggl.png" alt="Indorama Logo"></div><div class="client-comment">"A seamless, integrated approach."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/jonson.png" alt="SC Johnson Logo"></div><div class="client-comment">"Creative and results-driven."</div></div>
                         
                         <!-- Duplicates with corrected paths -->
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/hotel.png" alt="Hotel Seventeen Logo"></div><div class="client-comment">"A true partner in growth."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/famask.png" alt="Famask Logo"></div><div class="client-comment">"Exceeded all expectations."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/tetfund.png" alt="Tetfund Logo"></div><div class="client-comment">"Professional and effective."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/liberty.png" alt="Liberty TV/Radio Logo"></div><div class="client-comment">"Transformed our presence."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/euro.png" alt="Eurofoam Logo"></div><div class="client-comment">"Unparalleled strategic insight."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/INEC.png" alt="INEC Logo"></div><div class="client-comment">"The best team we've worked with."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/farm.png" alt="Farm Pride Logo"></div><div class="client-comment">"Our results have never been better."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/britis.png" alt="British American Tobacco Foundation Logo"></div><div class="client-comment">"Deep market understanding."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/indoram.png" alt="Indorama Logo"></div><div class="client-comment">"A seamless, integrated approach."</div></div>
-                        <div class="testimonial-slide"><div class="client-logo"><img src="images/png/jonson.png" alt="SC Johnson Logo"></div><div class="client-comment">"Creative and results-driven."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/hotel.png" alt="Hotel Seventeen Logo"></div><div class="client-comment">"A true partner in growth."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/famask.png" alt="Famask Logo"></div><div class="client-comment">"Exceeded all expectations."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/tetfund.png" alt="Tetfund Logo"></div><div class="client-comment">"Professional and effective."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/liberty.png" alt="Liberty TV/Radio Logo"></div><div class="client-comment">"Transformed our presence."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/euro.png" alt="Eurofoam Logo"></div><div class="client-comment">"Unparalleled strategic insight."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/INEC.png" alt="INEC Logo"></div><div class="client-comment">"The best team we've worked with."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/farm.png" alt="Farm Pride Logo"></div><div class="client-comment">"Our results have never been better."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/britis.png" alt="British American Tobacco Foundation Logo"></div><div class="client-comment">"Deep market understanding."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/indoram.png" alt="Indorama Logo"></div><div class="client-comment">"A seamless, integrated approach."</div></div>
+                        <div class="testimonial-slide"><div class="client-logo"><img src="images/jonson.png" alt="SC Johnson Logo"></div><div class="client-comment">"Creative and results-driven."</div></div>
                     </div>
                 </div>
             </div>
@@ -290,12 +290,10 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-columns">
-                <!-- Column 1: About -->
                 <div class="footer-column">
                     <h4>About The Clique</h4>
                     <p>We are architects of digital legacy, delivering inspired marketing communication solutions with a disciplined, serious approach to help our partners build brands that win.</p>
                 </div>
-                <!-- Column 2: Quick Links -->
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul>
@@ -306,7 +304,6 @@
                         <li><a href="#contact-us">Contact</a></li>
                     </ul>
                 </div>
-                <!-- Column 3: Contact Info -->
                 <div class="footer-column">
                     <h4>Contact Us</h4>
                     <address>
